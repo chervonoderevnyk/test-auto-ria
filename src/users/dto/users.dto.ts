@@ -5,7 +5,9 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiQuery } from '@nestjs/swagger';
+import { Role } from '../model/roles.enum';
+import { Query } from '@nestjs/common';
 
 export class CreateUserDto {
   @ApiProperty({ required: true })
@@ -17,6 +19,12 @@ export class CreateUserDto {
   @IsNotEmpty()
   firstName: string;
 
+  @ApiProperty()
+  @IsString()
+  // @IsNotEmpty()
+  @IsOptional()
+  password: string;
+
   @ApiProperty({ required: true, example: '@gmail.com' })
   @IsString()
   @IsEmail()
@@ -27,4 +35,8 @@ export class CreateUserDto {
   @IsBoolean()
   @IsOptional()
   premium: boolean;
+
+  @ApiProperty({ enum: ['Admin', 'Moderator', 'User'] })
+  @IsString()
+  roles: Role;
 }
