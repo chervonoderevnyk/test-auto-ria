@@ -6,8 +6,7 @@ import {
   IsString,
 } from 'class-validator';
 import { ApiProperty, ApiQuery } from '@nestjs/swagger';
-import { Role } from '../model/roles.enum';
-import { Query } from '@nestjs/common';
+// import { Role } from '../model/roles.enum';
 
 export class CreateUserDto {
   @ApiProperty({ required: true })
@@ -36,7 +35,7 @@ export class CreateUserDto {
   @IsOptional()
   premium: boolean;
 
-  @ApiProperty({ enum: ['Admin', 'Moderator', 'User'] })
-  @IsString()
-  roles: Role;
+  // @ApiProperty({ enum: ['Admin', 'Moderator', 'User'] })
+  // @IsString()
+  // roles: Role;
 }
