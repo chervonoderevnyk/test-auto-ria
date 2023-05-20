@@ -1,20 +1,32 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+import { Role } from './roles.enum';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
   constructor(private reflector: Reflector) {}
 
   canActivate(context: ExecutionContext): boolean {
-    const roles = this.reflector.get<string[]>('roles', context.getHandler());
-    if (!roles) {
+    const requireRoles: Role[] = this.reflector.getAllAndOverride<Role[]>(
+      'roles',
+      [context.getHandler(), context.getClass()],
+    );
+    if (!requireRoles) {
       return true;
     }
-    const request = context.switchToHttp().getRequest();
-    const user = request.User;
-    return matchRoles(roles, user.roles);
+    // const { user } = context.switchToHttp().getRequest();
+    // const user = {
+    //   id: Number('1'),
+    //   firstName: 'Bosyj',
+    //   lastName: 'Admin',
+    //   email: 'BossB@gmail.com',
+    //   password: '11111',
+    //   premium: true,
+    //   roles: 'Admin',
+    // };
+
+    const user: User = context.switchToHttp().getRequest();
+    return requireRoles.some((role: Role) => user.roles?.includes(role));
   }
-}
-function matchRoles(roles: string[], roles1: any): boolean {
-  throw new Error('Function not implemented.');
 }

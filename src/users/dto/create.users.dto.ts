@@ -5,17 +5,21 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { ApiProperty, ApiQuery } from '@nestjs/swagger';
-// import { Role } from '../model/roles.enum';
+import { ApiProperty } from '@nestjs/swagger';
+import { Role } from '../../auth/model/roles.enum';
+import { IsWalidWords } from '../dekorators/bad.words.dekorators';
 
 export class CreateUserDto {
   @ApiProperty({ required: true })
   @IsString()
   @IsNotEmpty()
+  @IsWalidWords()
   lastName: string;
 
   @ApiProperty({ required: true })
   @IsNotEmpty()
+  @IsWalidWords()
+  @IsWalidWords()
   firstName: string;
 
   @ApiProperty()
@@ -28,6 +32,7 @@ export class CreateUserDto {
   @IsString()
   @IsEmail()
   @IsNotEmpty()
+  @IsWalidWords()
   email: string;
 
   @ApiProperty()
@@ -35,7 +40,14 @@ export class CreateUserDto {
   @IsOptional()
   premium: boolean;
 
-  // @ApiProperty({ enum: ['Admin', 'Moderator', 'User'] })
-  // @IsString()
-  // roles: Role;
+  @ApiProperty()
+  @IsString()
+  @IsOptional()
+  @IsWalidWords()
+  roles: Role;
 }
+
+// @ApiProperty({
+//   enum: ['admin', 'manager', 'user'],
+// });
+// { type: 'Role', enum: ['Admin', 'User'] }
