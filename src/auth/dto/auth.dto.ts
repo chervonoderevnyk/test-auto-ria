@@ -83,4 +83,4 @@ export class RegisterManagerDto {
   @IsOptional()
   premium: boolean;
 }
-// { type: 'Role', enum: ['Admin', 'Manager', 'User'] }
+

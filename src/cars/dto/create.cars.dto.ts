@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+
 import { IsWalidWords } from '../../users/dekorators/bad.words.dekorators';
 
 export class CreateCarsDto {

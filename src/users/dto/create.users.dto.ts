@@ -6,6 +6,7 @@ import {
   IsString,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+
 import { Role } from '../../auth/model/roles.enum';
 import { IsWalidWords } from '../dekorators/bad.words.dekorators';
 
@@ -46,8 +47,3 @@ export class CreateUserDto {
   @IsWalidWords()
   roles: Role;
 }
-
-// @ApiProperty({
-//   enum: ['admin', 'manager', 'user'],
-// });
-// { type: 'Role', enum: ['Admin', 'User'] }
