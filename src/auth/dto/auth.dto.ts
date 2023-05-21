@@ -84,3 +84,26 @@ export class RegisterManagerDto {
   premium: boolean;
 }
 
+export class RegisterCarDealershipDto {
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  email: string;
+
+  @ApiProperty()
+  @IsString()
+  @Length(5, 25)
+  @IsNotEmpty()
+  password: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsOptional()
+  @IsWalidWords()
+  salonName: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsOptional()
+  roles: Role;
+}

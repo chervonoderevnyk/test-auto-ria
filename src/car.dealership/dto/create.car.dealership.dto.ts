@@ -3,25 +3,26 @@ import {
   IsEmail,
   IsNotEmpty,
   IsOptional,
+  IsPhoneNumber,
   IsString,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 import { Role } from '../../auth/model/roles.enum';
-import { IsWalidWords } from '../dekorators/bad.words.dekorators';
-import { Cars } from '@prisma/client';
+import { IsWalidWords } from '../../users/dekorators/bad.words.dekorators';
 
-export class CreateUserDto {
+export class CreateCarDealershipDto {
   @ApiProperty({ required: true })
   @IsString()
   @IsNotEmpty()
   @IsWalidWords()
-  lastName: string;
+  salonName: string;
 
   @ApiProperty({ required: true })
-  @IsNotEmpty()
+  @IsOptional()
+  @IsPhoneNumber()
   @IsWalidWords()
-  firstName: string;
+  phoneNumber: number;
 
   @ApiProperty()
   @IsString()
@@ -41,8 +42,7 @@ export class CreateUserDto {
   @IsOptional()
   premium: boolean;
 
-  // @ApiProperty({ enum: ['Admin', 'Manager', 'User'] })
-  @ApiProperty({ enum: Role })
+  @ApiProperty({ enum: ['CarDealership'] })
   @IsString()
   @IsOptional()
   @IsWalidWords()
