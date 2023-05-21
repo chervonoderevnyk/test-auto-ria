@@ -1,5 +1,4 @@
 import { registerDecorator, ValidationOptions } from 'class-validator';
-import BadWordsFilter from 'bad-words';
 
 export const IsWalidWords = (validationOptions?: ValidationOptions) => {
   return (object, propertyName) => {

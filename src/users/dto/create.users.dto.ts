@@ -9,6 +9,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 import { Role } from '../../auth/model/roles.enum';
 import { IsWalidWords } from '../dekorators/bad.words.dekorators';
+import { Cars } from '@prisma/client';
 
 export class CreateUserDto {
   @ApiProperty({ required: true })
@@ -41,9 +42,12 @@ export class CreateUserDto {
   @IsOptional()
   premium: boolean;
 
-  @ApiProperty()
+  // @ApiProperty({ enum: ['Admin', 'Manager', 'User'] })
+  @ApiProperty({ enum: Role })
   @IsString()
   @IsOptional()
   @IsWalidWords()
   roles: Role;
+
+  car: Cars[];
 }
