@@ -8,9 +8,7 @@ import { MailService } from './mail/mail.service';
 @Module({
   imports: [
     MailerModule.forRoot({
-      transport:
-        // 'smtp://Igorchornyj8@gmail.com:s9Qfz36aXVSJhm24@smtp-relay.sendinblue.com:587',
-        `smtp://${process.env.MAILER_USER}:${process.env.MAILER_PASS}@${process.env.MAILER_SMTP}`,
+      transport: `smtp://${process.env.MAILER_USER}:${process.env.MAILER_PASS}@${process.env.MAILER_SMTP}`,
       defaults: {
         from: '"nest-autoRiaTest" <autoRiaTest@nestjs.com>',
       },
