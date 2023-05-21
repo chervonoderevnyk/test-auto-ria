@@ -86,4 +86,10 @@ export class CarDealershipService {
   //     where: { email: CarDealershipEmail },
   //   });
   // }
+
+  // const postCount = await this.prismaService.cars.count({
+  //   where: {
+  //     carDealershipId: 29,
+  //   },
+  // })
 }
